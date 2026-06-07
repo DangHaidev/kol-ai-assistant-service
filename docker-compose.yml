@@ -1,0 +1,9 @@
+services:
+  ai-service:
+    build: .
+    ports:
+      - "8001:8001"
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgresql+asyncpg://kol_user:kol_secret@host.docker.internal:5432/kol_booking
