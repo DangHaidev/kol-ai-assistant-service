@@ -1,20 +1,28 @@
 import unicodedata
 
 
-CATEGORY_KEYWORDS = {
-    "fashion": ["thoi trang", "fashion"],
-    "beauty": ["my pham", "lam dep", "beauty"],
-    "food": ["an uong", "am thuc", "food"],
-    "travel": ["du lich", "travel"],
-    "technology": ["cong nghe", "technology", "tech"],
+CATEGORY_ALIASES = {
+    "fashion": ["thoi trang", "fashion", "clothing", "outfit"],
+    "beauty": ["my pham", "lam dep", "beauty", "skincare", "makeup", "cosmetics"],
+    "food": ["an uong", "am thuc", "food", "do an", "nha hang", "fnb"],
+    "lifestyle": ["lifestyle", "doi song", "life style", "song xanh", "daily life"],
+    "travel": ["du lich", "travel", "trip", "review dia diem", "xuat ngoai"],
+    "fitness": ["fitness", "the hinh", "gym", "tap luyen", "workout", "health"],
+    "tech": ["cong nghe", "technology", "tech", "gadget", "review cong nghe"],
+    "entertainment": ["giai tri", "entertainment", "music", "phim", "gameshow", "streamer"],
 }
 
-PLATFORM_KEYWORDS = {
-    "tiktok": ["tiktok"],
-    "instagram": ["instagram", "insta"],
+PLATFORM_ALIASES = {
+    "tiktok": ["tiktok", "tik tok"],
+    "instagram": ["instagram", "insta", "ig"],
     "facebook": ["facebook", "fb"],
     "youtube": ["youtube", "yt"],
 }
+
+CATEGORY_KEYWORDS = CATEGORY_ALIASES
+PLATFORM_KEYWORDS = PLATFORM_ALIASES
+CANONICAL_CATEGORIES = tuple(CATEGORY_KEYWORDS.keys())
+CANONICAL_PLATFORMS = tuple(PLATFORM_KEYWORDS.keys())
 
 
 def normalize_text(text: str) -> str:

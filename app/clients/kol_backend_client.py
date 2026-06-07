@@ -1,8 +1,12 @@
 from __future__ import annotations
 
 import httpx
+from logging import getLogger
 
 from app.core.config import settings
+
+
+logger = getLogger(__name__)
 
 
 class KolBackendClient:
@@ -19,6 +23,7 @@ class KolBackendClient:
         self.max_retries = max_retries
 
     async def search_candidates(self, criteria: dict, limit: int = 50) -> list[dict]:
+        last_error: Exception | None = None
         if self.internal_token:
             payload = {**criteria, "limit": limit}
             headers = {"X-Internal-Token": self.internal_token}
@@ -32,8 +37,13 @@ class KolBackendClient:
                         )
                         response.raise_for_status()
                         return self._extract_items(response.json())
-                except (httpx.TimeoutException, httpx.NetworkError, httpx.HTTPStatusError, ValueError):
+                except (httpx.TimeoutException, httpx.NetworkError, httpx.HTTPStatusError, ValueError) as exc:
+                    last_error = exc
                     continue
+        if last_error is not None:
+            logger.warning("kol_backend_client.mock_fallback reason=%s", last_error.__class__.__name__)
+        elif not self.internal_token:
+            logger.info("kol_backend_client.mock_fallback reason=missing_internal_token")
         return self._mock_candidates(limit)
 
     def _extract_items(self, payload: dict) -> list[dict]:
@@ -109,7 +119,7 @@ class KolBackendClient:
                 "kolId": 3,
                 "displayName": "Tech Reviewer C",
                 "avatarUrl": "https://example.com/avatar-3.jpg",
-                "categories": ["technology"],
+                "categories": ["tech"],
                 "platforms": [
                     {
                         "platform": "youtube",

@@ -1,6 +1,17 @@
 from app.schemas.criteria import KolSearchCriteria
-from app.schemas.kol import KolProfile
 from app.schemas.recommendation import RecommendationItem
+
+
+RELATED_CATEGORIES = {
+    "fashion": {"beauty", "lifestyle"},
+    "beauty": {"fashion", "lifestyle"},
+    "food": {"lifestyle", "travel", "entertainment"},
+    "lifestyle": {"fashion", "beauty", "food", "travel", "fitness", "entertainment"},
+    "travel": {"lifestyle", "food", "entertainment"},
+    "fitness": {"lifestyle", "beauty"},
+    "tech": {"entertainment"},
+    "entertainment": {"lifestyle", "travel", "food", "tech"},
+}
 
 
 class RankingService:
@@ -45,13 +56,24 @@ class RankingService:
     def calculate_category_score(self, candidate: dict, criteria: KolSearchCriteria) -> int:
         if not criteria.category:
             return 80
-        categories = {category.lower() for category in candidate.get("categories", [])}
-        return 100 if criteria.category.lower() in categories else 0
+
+        categories = {str(category).lower() for category in candidate.get("categories", []) if category}
+        target_category = criteria.category.lower()
+
+        if target_category in categories:
+            return 100
+        if any(category in RELATED_CATEGORIES.get(target_category, set()) for category in categories):
+            return 70
+        return 0
 
     def calculate_platform_score(self, candidate: dict, criteria: KolSearchCriteria) -> int:
         if not criteria.platforms:
             return 80
-        platforms = {platform["platform"].lower() for platform in candidate.get("platforms", [])}
+        platforms = {
+            str(platform.get("platform", "")).lower()
+            for platform in candidate.get("platforms", [])
+            if isinstance(platform, dict)
+        }
         return 100 if any(platform in platforms for platform in criteria.platforms) else 0
 
     def calculate_follower_score(self, candidate: dict, criteria: KolSearchCriteria) -> int:
@@ -128,26 +150,30 @@ class RankingService:
 
     def generate_reason(self, candidate: dict, criteria: KolSearchCriteria) -> str:
         reasons: list[str] = []
-        categories = {category.lower() for category in candidate.get("categories", [])}
+        categories = {str(category).lower() for category in candidate.get("categories", []) if category}
         if criteria.category and criteria.category.lower() in categories:
-            reasons.append(f"thuộc lĩnh vực {criteria.category}")
+            reasons.append(f"thuoc linh vuc {criteria.category}")
+        elif criteria.category and any(
+            category in RELATED_CATEGORIES.get(criteria.category.lower(), set()) for category in categories
+        ):
+            reasons.append(f"co noi dung gan voi linh vuc {criteria.category}")
 
         best_platform = self._best_platform(candidate, criteria)
         if best_platform:
-            platform_name = best_platform["platform"]
-            reasons.append(f"có {best_platform.get('followers', 0):,} follower trên {platform_name}")
+            platform_name = str(best_platform.get("platform", "")).lower()
+            reasons.append(f"co {best_platform.get('followers', 0):,} follower tren {platform_name}")
 
         price = candidate.get("priceFrom")
         if criteria.maxBudget and price is not None and price <= criteria.maxBudget:
-            reasons.append("giá nằm trong ngân sách")
+            reasons.append("gia nam trong ngan sach")
 
         rating = candidate.get("averageRating")
         if rating is not None and rating >= 4.5:
             reasons.append(f"rating cao {rating}/5")
 
         if not reasons:
-            return "KOL này có thông tin tương đối phù hợp với yêu cầu tìm kiếm."
-        return "Phù hợp vì " + ", ".join(reasons) + "."
+            return "KOL nay co thong tin tuong doi phu hop voi yeu cau tim kiem."
+        return "Phu hop vi " + ", ".join(reasons) + "."
 
     def _best_platform(self, candidate: dict, criteria: KolSearchCriteria) -> dict | None:
         platforms = candidate.get("platforms", [])
@@ -156,7 +182,8 @@ class RankingService:
         if criteria.platforms:
             normalized = [platform.lower() for platform in criteria.platforms]
             for platform in platforms:
-                if platform["platform"].lower() in normalized:
+                platform_name = str(platform.get("platform", "")).lower()
+                if platform_name in normalized:
                     return platform
         return max(platforms, key=lambda item: item.get("followers", 0))
 
@@ -165,9 +192,10 @@ class RankingService:
         return platform.get("followers", 0) if platform else 0
 
     def _best_engagement_rate(self, candidate: dict) -> float:
-        if not candidate.get("platforms"):
+        platforms = [platform for platform in candidate.get("platforms", []) if isinstance(platform, dict)]
+        if not platforms:
             return 0.0
-        return max(platform.get("engagementRate") or 0.0 for platform in candidate["platforms"])
+        return max(platform.get("engagementRate") or 0.0 for platform in platforms)
 
 
 ranking_service = RankingService()

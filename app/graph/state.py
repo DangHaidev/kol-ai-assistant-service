@@ -18,3 +18,5 @@ class KolChatState(TypedDict, total=False):
     candidates: list[dict[str, Any]]
     recommendations: list[RecommendationItem]
     reply: str | None
+    warnings: list[str]
+    workflowTrace: list[dict[str, Any]]

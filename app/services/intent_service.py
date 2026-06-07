@@ -1,5 +1,10 @@
+from logging import getLogger
+
 from app.clients.llm_client import llm_client
 from app.prompts.intent_prompt import INTENT_PROMPT_TEMPLATE
+
+
+logger = getLogger(__name__)
 
 
 class IntentService:
@@ -24,8 +29,8 @@ class IntentService:
             intent = payload.get("intent")
             if intent in {"recommend_kol", "compare_kol", "booking_help", "general_question"}:
                 return intent
-        except Exception:
-            pass
+        except Exception as exc:
+            logger.warning("intent_service.llm_fallback reason=%s", exc.__class__.__name__)
 
         return self.detect_intent(message)
 

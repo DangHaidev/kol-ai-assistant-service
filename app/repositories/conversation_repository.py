@@ -3,6 +3,7 @@ from __future__ import annotations
 from collections import defaultdict
 from copy import deepcopy
 from datetime import UTC, datetime
+from logging import getLogger
 from uuid import UUID, uuid4
 
 from sqlalchemy import select
@@ -11,6 +12,9 @@ from sqlalchemy.exc import SQLAlchemyError
 from app.core.database import AsyncSessionLocal
 from app.models.conversation import Conversation
 from app.models.message import Message
+
+
+logger = getLogger(__name__)
 
 
 class InMemoryConversationRepository:
@@ -181,12 +185,20 @@ class HybridConversationRepository:
         module_name = exc.__class__.__module__
         return isinstance(exc, (SQLAlchemyError, OSError, ValueError, KeyError)) or module_name.startswith("asyncpg.")
 
+    def _log_fallback(self, operation: str, exc: Exception) -> None:
+        logger.warning(
+            "conversation_repository.fallback operation=%s reason=%s",
+            operation,
+            exc.__class__.__name__,
+        )
+
     async def create_conversation(self, brand_id: int) -> dict:
         try:
             return await self.primary.create_conversation(brand_id)
         except Exception as exc:
             if not self._should_fallback(exc):
                 raise
+            self._log_fallback("create_conversation", exc)
             return await self.fallback.create_conversation(brand_id)
 
     async def get_conversation(self, conversation_id: str, brand_id: int) -> dict | None:
@@ -195,6 +207,7 @@ class HybridConversationRepository:
         except Exception as exc:
             if not self._should_fallback(exc):
                 raise
+            self._log_fallback("get_conversation", exc)
             return await self.fallback.get_conversation(conversation_id, brand_id)
 
     async def update_current_criteria(
@@ -208,6 +221,7 @@ class HybridConversationRepository:
         except Exception as exc:
             if not self._should_fallback(exc):
                 raise
+            self._log_fallback("update_current_criteria", exc)
             await self.fallback.update_current_criteria(conversation_id, criteria, last_intent=last_intent)
 
     async def save_message(
@@ -222,6 +236,7 @@ class HybridConversationRepository:
         except Exception as exc:
             if not self._should_fallback(exc):
                 raise
+            self._log_fallback("save_message", exc)
             await self.fallback.save_message(conversation_id, role, content, metadata)
 
     async def get_messages(self, conversation_id: str, limit: int = 20) -> list[dict]:
@@ -230,6 +245,7 @@ class HybridConversationRepository:
         except Exception as exc:
             if not self._should_fallback(exc):
                 raise
+            self._log_fallback("get_messages", exc)
             return await self.fallback.get_messages(conversation_id, limit=limit)
 
 

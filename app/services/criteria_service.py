@@ -1,9 +1,13 @@
 import re
+from logging import getLogger
 
 from app.clients.llm_client import llm_client
 from app.prompts.criteria_prompt import CRITERIA_PROMPT_TEMPLATE
 from app.schemas.criteria import KolSearchCriteria
-from app.utils.text_normalizer import normalize_category, normalize_platforms, normalize_text
+from app.utils.text_normalizer import CANONICAL_CATEGORIES, normalize_category, normalize_platforms, normalize_text
+
+
+logger = getLogger(__name__)
 
 
 class CriteriaService:
@@ -24,7 +28,8 @@ class CriteriaService:
         try:
             payload = await llm_client.generate_json(prompt)
             return KolSearchCriteria(**self._normalize_llm_payload(payload))
-        except Exception:
+        except Exception as exc:
+            logger.warning("criteria_service.llm_fallback reason=%s", exc.__class__.__name__)
             return self.extract_criteria(message, history=history, current_criteria=current_criteria)
 
     def extract_criteria(
@@ -140,7 +145,8 @@ class CriteriaService:
 
         category = payload.get("category")
         if isinstance(category, str):
-            normalized["category"] = normalize_category(category) or category.strip().lower()
+            normalized_category = normalize_category(category) or category.strip().lower()
+            normalized["category"] = normalized_category if normalized_category in CANONICAL_CATEGORIES else None
 
         platforms = payload.get("platforms")
         if isinstance(platforms, list):
