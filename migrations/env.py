@@ -10,7 +10,13 @@ from app.models.conversation import Conversation
 from app.models.message import Message
 
 config = context.config
-config.set_main_option("sqlalchemy.url", settings.database_url)
+
+
+def _escape_config_value(value: str) -> str:
+    return value.replace("%", "%%")
+
+
+config.set_main_option("sqlalchemy.url", _escape_config_value(settings.database_url))
 
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)

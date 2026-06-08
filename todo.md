@@ -169,6 +169,7 @@ Database da duoc doi huong sang dung chung DB `kol_booking` cua backend va tao c
 - Bo sung log fallback ro rang cho LLM, backend client va repository fallback khi DB khong san sang
 - Them `workflowTrace` va `warnings` vao metadata cua moi luot chat de debug workflow
 - Cap nhat ranking cho category lien quan va bo sung test edge cases theo `docs/07-ranking-logic.md`
+- Them `docker-compose.local.yml`, `.env.local.example` va `scripts/verify_local_db.py` de test bang `ai_*` o local truoc khi dung DB remote
 - Chay lai test suite: `25 passed, 1 warning`
 
 ## Blocker hien tai

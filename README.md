@@ -2,77 +2,76 @@
 
 ## 1. Mục tiêu
 
-`kol-ai-assistant-service` là một service AI chạy riêng repo, dùng để hỗ trợ Brand tìm KOL bằng hội thoại tự nhiên.
+`kol-ai-assistant-service` là một AI service riêng, dùng để hỗ trợ Brand tìm KOL bằng hội thoại tự nhiên.
 
-Ví dụ người dùng nhập:
+Ví dụ:
 
 ```txt
-Tôi muốn kiếm KOL về thời trang, lượt follower trên 100k, ưu tiên TikTok, ngân sách dưới 10 triệu.
+Tôi muốn tìm KOL về thời trang, follower trên 100k, ưu tiên TikTok, ngân sách dưới 10 triệu.
 ```
 
-Service cần hiểu yêu cầu, lưu ngữ cảnh hội thoại, trích xuất tiêu chí tìm kiếm, gọi dữ liệu KOL thật từ backend chính, chấm điểm phù hợp và trả về danh sách KOL nên chọn.
+Service cần:
+- hiểu yêu cầu của người dùng
+- lưu ngữ cảnh hội thoại
+- trích xuất tiêu chí tìm kiếm
+- gọi dữ liệu KOL thật từ backend chính
+- xếp hạng và trả về danh sách KOL đề xuất
 
 ## 2. Vai trò trong hệ thống
 
-Backend chính hiện tại là hệ thống KOL Booking dùng Java 21, Spring Boot, PostgreSQL, JWT, Docker và Flyway. Service AI này không thay thế backend chính, mà đóng vai trò lớp thông minh phía trên chức năng Search & Discovery.
+Backend chính hiện tại là hệ thống KOL Booking dùng Java 21, Spring Boot, PostgreSQL, JWT, Docker và Flyway. AI service này không thay thế backend chính, mà đóng vai trò lớp thông minh phía trên Search & Discovery.
 
 ```txt
 Frontend Chatbot
-    ↓
+    ->
 Spring Boot Backend
-    ↓ REST API
+    -> REST API
 KOL AI Assistant Service
-    ↓
+    ->
 LLM + Conversation Memory + Recommendation Logic
-    ↓
+    ->
 Spring Boot KOL APIs / PostgreSQL
 ```
 
-## 3. Stack đề xuất
+## 3. Stack
 
 | Thành phần | Công nghệ |
 |---|---|
-| Language | Python 3.11+ hoặc Python 3.12 |
+| Language | Python 3.11+ / 3.12 |
 | API Framework | FastAPI |
 | AI Workflow | LangGraph |
-| LLM Client | OpenAI / Gemini / Groq / Ollama tùy cấu hình |
+| LLM Client | OpenAI-compatible / Gemini / Groq / Ollama |
 | Validation | Pydantic |
 | Database | PostgreSQL |
 | ORM | SQLAlchemy |
 | Migration | Alembic |
 | HTTP Client | httpx |
-| Optional Cache | Redis |
-| Optional Vector Search | pgvector |
 | Deploy | Docker, Docker Compose |
 
-## 4. Nguyên tắc thiết kế quan trọng
+## 4. Nguyên tắc thiết kế
 
 ### 4.1. AI không được tự quyết định dữ liệu
 
 LLM chỉ được dùng để:
-
-- Hiểu câu hỏi người dùng.
-- Trích xuất tiêu chí tìm kiếm.
-- Tạo câu trả lời tự nhiên.
-- Đề xuất câu hỏi làm rõ nếu thiếu thông tin.
+- hiểu câu hỏi của người dùng
+- trích xuất tiêu chí tìm kiếm
+- tạo câu trả lời tự nhiên
+- đề xuất câu hỏi làm rõ nếu thiếu thông tin
 
 LLM không được:
-
-- Tự bịa tên KOL.
-- Tự bịa follower, giá, rating.
-- Tự tạo SQL rồi chạy trực tiếp.
-- Tự quyết định booking/payment.
+- tự bịa tên KOL
+- tự bịa follower, giá, rating
+- tự tạo SQL rồi chạy trực tiếp
+- tự quyết định booking hoặc payment
 
 ### 4.2. Dữ liệu KOL phải lấy từ hệ thống thật
 
-Luồng đúng:
-
 ```txt
 User message
-→ LLM extract criteria
-→ Backend query KOL thật
-→ Ranking bằng code
-→ LLM viết response dựa trên kết quả thật
+-> LLM extract criteria
+-> Backend query KOL thật
+-> Ranking bằng code
+-> LLM viết response dựa trên kết quả thật
 ```
 
 ### 4.3. Có ngữ cảnh hội thoại
@@ -87,7 +86,7 @@ Bot: Bạn muốn ưu tiên nền tảng nào?
 User: TikTok, ngân sách dưới 10 triệu.
 ```
 
-Sau lượt 2, criteria đầy đủ phải là:
+Criteria đầy đủ sau lượt 2:
 
 ```json
 {
@@ -98,17 +97,16 @@ Sau lượt 2, criteria đầy đủ phải là:
 }
 ```
 
-## 5. MVP cần hoàn thành
+## 5. MVP
 
-MVP nên gồm 5 phần:
+MVP gồm 5 phần:
+1. API `/api/v1/chat`
+2. Lưu conversation và messages vào PostgreSQL
+3. Extract criteria từ message bằng LLM
+4. Gọi backend chính để lấy danh sách KOL
+5. Rank KOL và trả về top kết quả kèm lý do
 
-1. API `/api/v1/chat` nhận message từ người dùng.
-2. Lưu conversation và messages vào PostgreSQL.
-3. Extract criteria từ message bằng LLM.
-4. Gọi backend chính để lấy danh sách KOL phù hợp.
-5. Rank KOL và trả về top kết quả kèm lý do.
-
-## 6. Lệnh chạy dự kiến
+## 6. Chạy service
 
 ```bash
 python -m venv .venv
@@ -126,16 +124,57 @@ pip install -r requirements.txt
 uvicorn app.main:app --reload --port 8001
 ```
 
-## 7. Tài liệu trong thư mục này
+## 6.1. Test DB local trước khi dùng remote
+
+Nếu muốn xác nhận migration và các bảng `ai_*` ổn định ở local trước, dùng flow này:
+
+1. Tạo env local:
+
+```powershell
+Copy-Item .env.local.example .env.local
+```
+
+2. Khởi động PostgreSQL local:
+
+```powershell
+docker compose -f docker-compose.local.yml up -d postgres
+```
+
+3. Apply Alembic và kiểm tra bảng:
+
+```powershell
+$env:DATABASE_URL = "postgresql+asyncpg://kol_user:kol_secret@localhost:5433/kol_booking"
+.\.venv\Scripts\python -m alembic upgrade head
+.\.venv\Scripts\python scripts\verify_local_db.py
+```
+
+Kết quả mong đợi:
+- `ALEMBIC_VERSION=001`
+- có đủ `ai_conversations`, `ai_messages`, `ai_recommendation_logs`
+
+4. Nếu muốn chạy cả AI service với DB local:
+
+```powershell
+docker compose -f docker-compose.local.yml up --build
+```
+
+Hoặc chạy từ host:
+
+```powershell
+Copy-Item .env.local .env
+uvicorn app.main:app --reload --port 8001
+```
+
+## 7. Tài liệu trong repo
 
 | File | Nội dung |
 |---|---|
-| `01-product-requirements.md` | Mô tả chức năng và phạm vi MVP |
-| `02-architecture.md` | Kiến trúc tổng thể và module nội bộ |
-| `03-api-contract.md` | API request/response giữa Frontend, Spring Boot và AI Service |
-| `04-database-design.md` | Thiết kế DB cho conversation memory |
-| `05-ai-workflow.md` | Workflow LangGraph và state chatbot |
-| `06-prompts.md` | Prompt dùng cho intent extraction, criteria extraction, response generation |
-| `07-ranking-logic.md` | Công thức chấm điểm KOL |
-| `08-implementation-roadmap.md` | Checklist code theo từng bước |
-| `09-repo-structure.md` | Cấu trúc thư mục repo đề xuất |
+| `docs/01-product-requirements.md` | Mô tả chức năng và phạm vi MVP |
+| `docs/02-architecture.md` | Kiến trúc tổng thể và module nội bộ |
+| `docs/03-api-contract.md` | API request/response giữa Frontend, Spring Boot và AI Service |
+| `docs/04-database-design.md` | Thiết kế DB cho conversation memory |
+| `docs/05-ai-workflow.md` | Workflow LangGraph và state chatbot |
+| `docs/06-prompts.md` | Prompt cho intent extraction, criteria extraction, response generation |
+| `docs/07-ranking-logic.md` | Công thức chấm điểm KOL |
+| `docs/08-implementation-roadmap.md` | Checklist code theo từng bước |
+| `docs/09-repo-structure.md` | Cấu trúc thư mục repo đề xuất |
