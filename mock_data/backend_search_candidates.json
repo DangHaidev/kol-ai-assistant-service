@@ -1,0 +1,243 @@
+{
+  "items": [
+    {
+      "kolId": 1,
+      "displayName": "Mai Linh Fashion",
+      "avatarUrl": "https://example.com/avatars/mai-linh-fashion.jpg",
+      "bio": "Fashion and lifestyle creator focused on Gen Z styling and daily outfit content.",
+      "location": "Ho Chi Minh",
+      "gender": "female",
+      "categories": ["fashion", "lifestyle", "beauty"],
+      "platforms": [
+        {
+          "platform": "tiktok",
+          "profileUrl": "https://tiktok.com/@mai_linh_fashion",
+          "followers": 180000,
+          "engagementRate": 0.046,
+          "averageViews": 64000
+        },
+        {
+          "platform": "instagram",
+          "profileUrl": "https://instagram.com/mai_linh_fashion",
+          "followers": 120000,
+          "engagementRate": 0.031,
+          "averageViews": 28000
+        }
+      ],
+      "priceFrom": 7000000,
+      "averageRating": 4.8,
+      "completedBookingCount": 24,
+      "bookingAcceptanceRate": 0.88
+    },
+    {
+      "kolId": 2,
+      "displayName": "Tram Anh Beauty",
+      "avatarUrl": "https://example.com/avatars/tram-anh-beauty.jpg",
+      "bio": "Beauty creator with strong short-form review content for skincare and makeup campaigns.",
+      "location": "Ha Noi",
+      "gender": "female",
+      "categories": ["beauty", "fashion"],
+      "platforms": [
+        {
+          "platform": "tiktok",
+          "profileUrl": "https://tiktok.com/@tram_anh_beauty",
+          "followers": 240000,
+          "engagementRate": 0.052,
+          "averageViews": 71000
+        },
+        {
+          "platform": "facebook",
+          "profileUrl": "https://facebook.com/tram.anh.beauty",
+          "followers": 90000,
+          "engagementRate": 0.024,
+          "averageViews": 16000
+        }
+      ],
+      "priceFrom": 6500000,
+      "averageRating": 4.7,
+      "completedBookingCount": 19,
+      "bookingAcceptanceRate": 0.9
+    },
+    {
+      "kolId": 3,
+      "displayName": "Duc Anh Food Review",
+      "avatarUrl": "https://example.com/avatars/duc-anh-food-review.jpg",
+      "bio": "Food reviewer covering cafes, fast-casual brands, and local dining recommendations.",
+      "location": "Da Nang",
+      "gender": "male",
+      "categories": ["food", "lifestyle"],
+      "platforms": [
+        {
+          "platform": "facebook",
+          "profileUrl": "https://facebook.com/duc.anh.food.review",
+          "followers": 150000,
+          "engagementRate": 0.034,
+          "averageViews": 25000
+        },
+        {
+          "platform": "youtube",
+          "profileUrl": "https://youtube.com/@ducanhfoodreview",
+          "followers": 130000,
+          "engagementRate": 0.041,
+          "averageViews": 42000
+        },
+        {
+          "platform": "tiktok",
+          "profileUrl": "https://tiktok.com/@duc_anh_food_review",
+          "followers": 95000,
+          "engagementRate": 0.049,
+          "averageViews": 47000
+        }
+      ],
+      "priceFrom": 5500000,
+      "averageRating": 4.6,
+      "completedBookingCount": 17,
+      "bookingAcceptanceRate": 0.84
+    },
+    {
+      "kolId": 4,
+      "displayName": "Bao Ngoc Travel",
+      "avatarUrl": "https://example.com/avatars/bao-ngoc-travel.jpg",
+      "bio": "Travel storyteller for staycations, destinations, and tourism brand activations.",
+      "location": "Ho Chi Minh",
+      "gender": "female",
+      "categories": ["travel", "lifestyle"],
+      "platforms": [
+        {
+          "platform": "instagram",
+          "profileUrl": "https://instagram.com/bao_ngoc_travel",
+          "followers": 210000,
+          "engagementRate": 0.038,
+          "averageViews": 36000
+        },
+        {
+          "platform": "tiktok",
+          "profileUrl": "https://tiktok.com/@bao_ngoc_travel",
+          "followers": 130000,
+          "engagementRate": 0.044,
+          "averageViews": 53000
+        }
+      ],
+      "priceFrom": 9000000,
+      "averageRating": 4.9,
+      "completedBookingCount": 21,
+      "bookingAcceptanceRate": 0.91
+    },
+    {
+      "kolId": 5,
+      "displayName": "Quoc Viet Fitness",
+      "avatarUrl": "https://example.com/avatars/quoc-viet-fitness.jpg",
+      "bio": "Fitness coach and healthy living creator with long-form training and supplement content.",
+      "location": "Can Tho",
+      "gender": "male",
+      "categories": ["fitness", "lifestyle"],
+      "platforms": [
+        {
+          "platform": "youtube",
+          "profileUrl": "https://youtube.com/@quocvietfitness",
+          "followers": 320000,
+          "engagementRate": 0.057,
+          "averageViews": 88000
+        },
+        {
+          "platform": "tiktok",
+          "profileUrl": "https://tiktok.com/@quoc_viet_fitness",
+          "followers": 110000,
+          "engagementRate": 0.036,
+          "averageViews": 30000
+        }
+      ],
+      "priceFrom": 12000000,
+      "averageRating": 4.7,
+      "completedBookingCount": 14,
+      "bookingAcceptanceRate": 0.83
+    },
+    {
+      "kolId": 6,
+      "displayName": "Khoa Tech Lab",
+      "avatarUrl": "https://example.com/avatars/khoa-tech-lab.jpg",
+      "bio": "Tech reviewer specializing in smartphones, gadgets, and creator tools.",
+      "location": "Ha Noi",
+      "gender": "male",
+      "categories": ["tech"],
+      "platforms": [
+        {
+          "platform": "youtube",
+          "profileUrl": "https://youtube.com/@khoatechlab",
+          "followers": 450000,
+          "engagementRate": 0.055,
+          "averageViews": 94000
+        },
+        {
+          "platform": "facebook",
+          "profileUrl": "https://facebook.com/khoa.tech.lab",
+          "followers": 160000,
+          "engagementRate": 0.027,
+          "averageViews": 18000
+        }
+      ],
+      "priceFrom": 15000000,
+      "averageRating": 4.9,
+      "completedBookingCount": 28,
+      "bookingAcceptanceRate": 0.93
+    },
+    {
+      "kolId": 7,
+      "displayName": "Minh Chau Entertain",
+      "avatarUrl": "https://example.com/avatars/minh-chau-entertain.jpg",
+      "bio": "Entertainment creator with skit, trend, and music-react content for mass-reach campaigns.",
+      "location": "Ho Chi Minh",
+      "gender": "female",
+      "categories": ["entertainment", "lifestyle"],
+      "platforms": [
+        {
+          "platform": "tiktok",
+          "profileUrl": "https://tiktok.com/@minh_chau_entertain",
+          "followers": 510000,
+          "engagementRate": 0.061,
+          "averageViews": 140000
+        },
+        {
+          "platform": "instagram",
+          "profileUrl": "https://instagram.com/minh_chau_entertain",
+          "followers": 280000,
+          "engagementRate": 0.033,
+          "averageViews": 42000
+        }
+      ],
+      "priceFrom": 18000000,
+      "averageRating": 4.8,
+      "completedBookingCount": 33,
+      "bookingAcceptanceRate": 0.89
+    },
+    {
+      "kolId": 8,
+      "displayName": "Ngoc Ha Lifestyle",
+      "avatarUrl": "https://example.com/avatars/ngoc-ha-lifestyle.jpg",
+      "bio": "Lifestyle creator mixing home, self-care, and daily recommendation content.",
+      "location": "Hai Phong",
+      "gender": "female",
+      "categories": ["lifestyle", "fashion", "beauty"],
+      "platforms": [
+        {
+          "platform": "instagram",
+          "profileUrl": "https://instagram.com/ngoc_ha_lifestyle",
+          "followers": 175000,
+          "engagementRate": 0.035,
+          "averageViews": 26000
+        },
+        {
+          "platform": "facebook",
+          "profileUrl": "https://facebook.com/ngoc.ha.lifestyle",
+          "followers": 130000,
+          "engagementRate": 0.022,
+          "averageViews": 15000
+        }
+      ],
+      "priceFrom": 8000000,
+      "averageRating": 4.5,
+      "completedBookingCount": 11,
+      "bookingAcceptanceRate": 0.82
+    }
+  ]
+}

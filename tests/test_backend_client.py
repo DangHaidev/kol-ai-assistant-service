@@ -1,4 +1,5 @@
 import pytest
+import json
 
 from app.clients.kol_backend_client import KolBackendClient
 
@@ -61,7 +62,10 @@ async def test_backend_client_accepts_wrapped_success_payload(monkeypatch: pytes
 
 
 @pytest.mark.asyncio
-async def test_backend_client_falls_back_to_mock_when_request_fails(monkeypatch: pytest.MonkeyPatch) -> None:
+async def test_backend_client_falls_back_to_mock_file_when_request_fails(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path,
+) -> None:
     class BrokenAsyncClient:
         async def __aenter__(self):
             return self
@@ -76,9 +80,39 @@ async def test_backend_client_falls_back_to_mock_when_request_fails(monkeypatch:
         "app.clients.kol_backend_client.httpx.AsyncClient",
         lambda timeout: BrokenAsyncClient(),
     )
-    client = KolBackendClient("http://localhost:8080", 10, internal_token="secret", max_retries=0)
+    mock_file = tmp_path / "backend_search_candidates.json"
+    mock_file.write_text(
+        json.dumps(
+            {
+                "items": [
+                    {
+                        "kolId": 1,
+                        "displayName": "Mock Fashion Creator",
+                        "categories": ["fashion", "beauty"],
+                        "platforms": [{"platform": "TIKTOK", "followers": 180000}],
+                        "priceFrom": 7000000,
+                    },
+                    {
+                        "kolId": 2,
+                        "displayName": "Mock Tech Creator",
+                        "categories": ["tech"],
+                        "platforms": [{"platform": "YOUTUBE", "followers": 450000}],
+                        "priceFrom": 15000000,
+                    },
+                ]
+            }
+        ),
+        encoding="utf-8",
+    )
+    client = KolBackendClient(
+        "http://localhost:8080",
+        10,
+        internal_token="secret",
+        mock_data_path=str(mock_file),
+        max_retries=0,
+    )
 
     items = await client.search_candidates({"category": "fashion"}, limit=2)
 
-    assert len(items) == 2
+    assert len(items) == 1
     assert items[0]["kolId"] == 1

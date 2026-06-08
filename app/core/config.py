@@ -8,6 +8,7 @@ class Settings(BaseSettings):
     database_url: str = "postgresql+asyncpg://kol_user:kol_secret@localhost:5432/kol_booking"
     spring_backend_base_url: str = "http://localhost:8080"
     spring_backend_internal_token: str | None = None
+    backend_mock_candidates_path: str = "mock_data/backend_search_candidates.json"
     llm_provider: str = "openai"
     openai_api_key: str | None = None
     openai_base_url: str | None = None
