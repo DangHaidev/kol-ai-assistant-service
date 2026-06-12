@@ -1,6 +1,6 @@
 # TODO - KOL AI Assistant Service
 
-Cap nhat lan cuoi: 2026-06-08
+Cap nhat lan cuoi: 2026-06-12
 
 ## Trang thai hien tai
 
@@ -79,9 +79,9 @@ Database da duoc doi huong sang dung chung DB `kol_booking` cua backend va tao c
 - [x] Ho tro response dang raw `{ items: [...] }`
 - [x] Ho tro response envelope `{ success, data }`
 - [x] Normalize category/platform/gender tu backend response
-- [ ] Backend Spring Boot can co endpoint `POST /api/internal/kols/search-candidates`
+- [x] Backend Spring Boot co endpoint `POST /api/internal/kols/search-candidates`
 - [ ] Test client voi backend Spring Boot that
-- [ ] Chot auth internal token giua Spring Boot va AI service
+- [x] Chot auth internal token giua Spring Boot va AI service bang header `X-Internal-Token`
 
 ### Phase 7 - Ranking Service
 
@@ -147,7 +147,20 @@ Database da duoc doi huong sang dung chung DB `kol_booking` cua backend va tao c
      AND table_name LIKE 'ai_%';
    ```
 
-4. Bo sung endpoint backend Spring Boot `POST /api/internal/kols/search-candidates` neu chua co.
+4. Dong bo token noi bo giua 2 service.
+
+   Backend Docker can co:
+
+   ```env
+   APP_INTERNAL_TOKEN=<same-secret>
+   ```
+
+   AI service can co:
+
+   ```env
+   SPRING_BACKEND_INTERNAL_TOKEN=<same-secret>
+   SPRING_BACKEND_BASE_URL=http://localhost:8080
+   ```
 
 5. Test AI service voi DB shared va backend internal API that.
 
@@ -171,12 +184,19 @@ Database da duoc doi huong sang dung chung DB `kol_booking` cua backend va tao c
 - Cap nhat ranking cho category lien quan va bo sung test edge cases theo `docs/07-ranking-logic.md`
 - Them `docker-compose.local.yml`, `.env.local.example` va `scripts/verify_local_db.py` de test bang `ai_*` o local truoc khi dung DB remote
 - Chay lai test suite: `25 passed, 1 warning`
+- Bo sung endpoint Spring Boot `POST /api/internal/kols/search-candidates`
+- Bo sung `APP_INTERNAL_TOKEN` cho backend Docker Compose va `.env.example`
+- Test backend Docker endpoint:
+  - `GET /actuator/health` tra `UP`
+  - Khong co `X-Internal-Token` tra `403 FORBIDDEN`
+  - Token dung tra response raw `{ "items": [...] }`
+  - Platform sai tra `400 VALIDATION_FAILED`
 
 ## Blocker hien tai
 
 - `alembic current` dang fail voi loi `password authentication failed for user "kol_user"` khi tro toi `localhost:5432/kol_booking`.
 - Docker API trong phien nay co luc khong truy cap duoc `npipe:////./pipe/dockerDesktopLinuxEngine`, can dam bao Docker Desktop dang chay truoc khi test container.
-- Backend internal endpoint `/api/internal/kols/search-candidates` chua duoc xac nhan la da ton tai trong Spring Boot.
+- Can set cung mot secret cho `APP_INTERNAL_TOKEN` cua backend va `SPRING_BACKEND_INTERNAL_TOKEN` cua AI service truoc khi test end-to-end.
 
 ## Lenh verify da chay gan nhat
 

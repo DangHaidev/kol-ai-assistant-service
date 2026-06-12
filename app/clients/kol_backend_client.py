@@ -91,6 +91,7 @@ class KolBackendClient:
         candidates = [
             {
                 "kolId": 1,
+                "slug": "demo-fashion-kol",
                 "displayName": "Demo Fashion KOL",
                 "avatarUrl": "https://example.com/avatar-1.jpg",
                 "categories": ["fashion", "beauty"],
@@ -110,6 +111,7 @@ class KolBackendClient:
             },
             {
                 "kolId": 2,
+                "slug": "lifestyle-creator-b",
                 "displayName": "Lifestyle Creator B",
                 "avatarUrl": "https://example.com/avatar-2.jpg",
                 "categories": ["lifestyle", "fashion"],
@@ -129,6 +131,7 @@ class KolBackendClient:
             },
             {
                 "kolId": 3,
+                "slug": "tech-reviewer-c",
                 "displayName": "Tech Reviewer C",
                 "avatarUrl": "https://example.com/avatar-3.jpg",
                 "categories": ["tech"],

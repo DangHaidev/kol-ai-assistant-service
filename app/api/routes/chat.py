@@ -20,7 +20,7 @@ async def chat(request: ChatRequest) -> ChatResponse:
         reply=result["reply"],
         intent=result["intent"],
         criteria=result["mergedCriteria"],
-        recommendations=result["recommendations"],
-        needClarification=result["needClarification"],
-        clarificationQuestions=result["clarificationQuestions"],
+        recommendations=result.get("recommendations", []),
+        needClarification=result.get("needClarification", False),
+        clarificationQuestions=result.get("clarificationQuestions", []),
     )

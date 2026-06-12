@@ -6,6 +6,7 @@ from app.schemas.kol import KolPlatform
 
 class RecommendationItem(BaseModel):
     kolId: int
+    slug: str | None = None
     displayName: str
     avatarUrl: str | None = None
     categories: list[str] = Field(default_factory=list)

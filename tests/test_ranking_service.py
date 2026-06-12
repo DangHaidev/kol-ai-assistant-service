@@ -6,6 +6,7 @@ def test_ranking_service_prioritizes_matching_candidate() -> None:
     candidates = [
         {
             "kolId": 1,
+            "slug": "match",
             "displayName": "Match",
             "categories": ["fashion"],
             "platforms": [{"platform": "tiktok", "followers": 150000, "engagementRate": 0.04}],
@@ -15,6 +16,7 @@ def test_ranking_service_prioritizes_matching_candidate() -> None:
         },
         {
             "kolId": 2,
+            "slug": "mismatch",
             "displayName": "Mismatch",
             "categories": ["tech"],
             "platforms": [{"platform": "youtube", "followers": 50000, "engagementRate": 0.01}],
@@ -29,6 +31,31 @@ def test_ranking_service_prioritizes_matching_candidate() -> None:
 
     assert recommendations[0].kolId == 1
     assert recommendations[0].matchScore > recommendations[1].matchScore
+
+
+def test_ranking_service_keeps_candidate_without_slug() -> None:
+    candidates = [
+        {
+            "kolId": 1,
+            "displayName": "Missing Slug",
+            "categories": ["fashion"],
+            "platforms": [{"platform": "tiktok", "followers": 150000, "engagementRate": 0.04}],
+        },
+        {
+            "kolId": 2,
+            "slug": "has-slug",
+            "displayName": "Has Slug",
+            "categories": ["fashion"],
+            "platforms": [{"platform": "tiktok", "followers": 150000, "engagementRate": 0.04}],
+        },
+    ]
+    criteria = KolSearchCriteria(category="fashion", platforms=["tiktok"])
+
+    recommendations = ranking_service.rank_candidates(candidates, criteria, top_k=2)
+
+    assert [item.kolId for item in recommendations] == [1, 2]
+    assert recommendations[0].slug is None
+    assert recommendations[1].slug == "has-slug"
 
 
 def test_related_category_gets_partial_score() -> None:

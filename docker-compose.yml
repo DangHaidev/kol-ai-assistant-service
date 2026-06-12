@@ -6,4 +6,6 @@ services:
     env_file:
       - .env
     environment:
-      DATABASE_URL: postgresql+asyncpg://kol_user:kol_secret@host.docker.internal:5432/kol_booking
+      # Local DB fallback:
+      # DATABASE_URL: postgresql+asyncpg://kol_user:kol_secret@host.docker.internal:5432/kol_booking
+      DATABASE_URL: ${DATABASE_URL}

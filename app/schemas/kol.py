@@ -11,6 +11,7 @@ class KolPlatform(BaseModel):
 
 class KolProfile(BaseModel):
     kolId: int
+    slug: str | None = None
     displayName: str
     avatarUrl: str | None = None
     bio: str | None = None

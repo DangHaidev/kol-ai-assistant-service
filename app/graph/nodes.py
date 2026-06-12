@@ -104,9 +104,6 @@ async def merge_criteria(state: KolChatState) -> dict:
 async def check_clarification(state: KolChatState) -> dict:
     merged_criteria = state.get("mergedCriteria", KolSearchCriteria())
     need_clarification, questions = criteria_service.check_need_clarification(merged_criteria)
-    if state.get("intent") == "recommend_kol" and (merged_criteria.category or merged_criteria.campaignGoal):
-        need_clarification = False
-        questions = []
     logger.info("workflow.check_clarification need=%s", need_clarification)
     return {
         "needClarification": need_clarification,

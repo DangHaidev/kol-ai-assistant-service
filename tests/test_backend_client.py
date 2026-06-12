@@ -40,6 +40,7 @@ async def test_backend_client_accepts_wrapped_success_payload(monkeypatch: pytes
             "items": [
                 {
                     "kolId": 12,
+                    "slug": "nguyen-a",
                     "displayName": "Nguyen A",
                     "categories": ["Fashion", "Beauty"],
                     "platforms": [{"platform": "TIKTOK", "followers": 230000}],
@@ -87,6 +88,7 @@ async def test_backend_client_falls_back_to_mock_file_when_request_fails(
                 "items": [
                     {
                         "kolId": 1,
+                        "slug": "mock-fashion-creator",
                         "displayName": "Mock Fashion Creator",
                         "categories": ["fashion", "beauty"],
                         "platforms": [{"platform": "TIKTOK", "followers": 180000}],
@@ -94,6 +96,7 @@ async def test_backend_client_falls_back_to_mock_file_when_request_fails(
                     },
                     {
                         "kolId": 2,
+                        "slug": "mock-tech-creator",
                         "displayName": "Mock Tech Creator",
                         "categories": ["tech"],
                         "platforms": [{"platform": "YOUTUBE", "followers": 450000}],

@@ -2,6 +2,7 @@
   "items": [
     {
       "kolId": 1,
+      "slug": "mai-linh-fashion",
       "displayName": "Mai Linh Fashion",
       "avatarUrl": "https://example.com/avatars/mai-linh-fashion.jpg",
       "bio": "Fashion and lifestyle creator focused on Gen Z styling and daily outfit content.",
@@ -31,6 +32,7 @@
     },
     {
       "kolId": 2,
+      "slug": "tram-anh-beauty",
       "displayName": "Tram Anh Beauty",
       "avatarUrl": "https://example.com/avatars/tram-anh-beauty.jpg",
       "bio": "Beauty creator with strong short-form review content for skincare and makeup campaigns.",
@@ -60,6 +62,7 @@
     },
     {
       "kolId": 3,
+      "slug": "duc-anh-food-review",
       "displayName": "Duc Anh Food Review",
       "avatarUrl": "https://example.com/avatars/duc-anh-food-review.jpg",
       "bio": "Food reviewer covering cafes, fast-casual brands, and local dining recommendations.",
@@ -96,6 +99,7 @@
     },
     {
       "kolId": 4,
+      "slug": "bao-ngoc-travel",
       "displayName": "Bao Ngoc Travel",
       "avatarUrl": "https://example.com/avatars/bao-ngoc-travel.jpg",
       "bio": "Travel storyteller for staycations, destinations, and tourism brand activations.",
@@ -125,6 +129,7 @@
     },
     {
       "kolId": 5,
+      "slug": "quoc-viet-fitness",
       "displayName": "Quoc Viet Fitness",
       "avatarUrl": "https://example.com/avatars/quoc-viet-fitness.jpg",
       "bio": "Fitness coach and healthy living creator with long-form training and supplement content.",
@@ -154,6 +159,7 @@
     },
     {
       "kolId": 6,
+      "slug": "khoa-tech-lab",
       "displayName": "Khoa Tech Lab",
       "avatarUrl": "https://example.com/avatars/khoa-tech-lab.jpg",
       "bio": "Tech reviewer specializing in smartphones, gadgets, and creator tools.",
@@ -183,6 +189,7 @@
     },
     {
       "kolId": 7,
+      "slug": "minh-chau-entertain",
       "displayName": "Minh Chau Entertain",
       "avatarUrl": "https://example.com/avatars/minh-chau-entertain.jpg",
       "bio": "Entertainment creator with skit, trend, and music-react content for mass-reach campaigns.",
@@ -212,6 +219,7 @@
     },
     {
       "kolId": 8,
+      "slug": "ngoc-ha-lifestyle",
       "displayName": "Ngoc Ha Lifestyle",
       "avatarUrl": "https://example.com/avatars/ngoc-ha-lifestyle.jpg",
       "bio": "Lifestyle creator mixing home, self-care, and daily recommendation content.",
