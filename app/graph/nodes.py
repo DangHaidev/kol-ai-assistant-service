@@ -1,4 +1,7 @@
+from functools import wraps
 from logging import getLogger
+from time import perf_counter
+from typing import Awaitable, Callable, TypeVar
 
 from app.graph.state import KolChatState
 from app.schemas.criteria import KolSearchCriteria
@@ -11,6 +14,31 @@ from app.services.response_service import response_service
 
 
 logger = getLogger(__name__)
+NodeFunc = TypeVar("NodeFunc", bound=Callable[[KolChatState], Awaitable[dict]])
+
+
+def timed_node(node: str) -> Callable[[NodeFunc], NodeFunc]:
+    def decorator(func: NodeFunc) -> NodeFunc:
+        @wraps(func)
+        async def wrapper(state: KolChatState) -> dict:
+            start = perf_counter()
+            status = "error"
+            try:
+                result = await func(state)
+                status = "ok"
+                return result
+            finally:
+                duration_ms = (perf_counter() - start) * 1000
+                logger.info(
+                    "workflow.node_timing node=%s duration_ms=%.2f status=%s",
+                    node,
+                    duration_ms,
+                    status,
+                )
+
+        return wrapper  # type: ignore[return-value]
+
+    return decorator
 
 
 def _trace(state: KolChatState, node: str, **details: object) -> list[dict]:
@@ -27,6 +55,7 @@ def _warnings(state: KolChatState, *messages: str) -> list[str]:
     return merged
 
 
+@timed_node("load_conversation")
 async def load_conversation(state: KolChatState) -> dict:
     conversation = await conversation_service.ensure_conversation(
         state["brandId"],
@@ -50,6 +79,7 @@ async def load_conversation(state: KolChatState) -> dict:
     }
 
 
+@timed_node("extract_intent")
 async def extract_intent(state: KolChatState) -> dict:
     intent = await intent_service.detect_intent_with_fallback(state["userMessage"])
     logger.info("workflow.extract_intent intent=%s", intent)
@@ -59,6 +89,7 @@ async def extract_intent(state: KolChatState) -> dict:
     }
 
 
+@timed_node("extract_criteria")
 async def extract_criteria(state: KolChatState) -> dict:
     extracted_criteria = await criteria_service.extract_criteria_with_fallback(
         state["userMessage"],
@@ -81,6 +112,7 @@ async def extract_criteria(state: KolChatState) -> dict:
     }
 
 
+@timed_node("merge_criteria")
 async def merge_criteria(state: KolChatState) -> dict:
     old_criteria = state.get("oldCriteria", KolSearchCriteria())
     extracted_criteria = state.get("extractedCriteria", KolSearchCriteria())
@@ -101,6 +133,7 @@ async def merge_criteria(state: KolChatState) -> dict:
     }
 
 
+@timed_node("check_clarification")
 async def check_clarification(state: KolChatState) -> dict:
     merged_criteria = state.get("mergedCriteria", KolSearchCriteria())
     need_clarification, questions = criteria_service.check_need_clarification(merged_criteria)
@@ -117,6 +150,7 @@ async def check_clarification(state: KolChatState) -> dict:
     }
 
 
+@timed_node("generate_clarification_response")
 async def generate_clarification_response(state: KolChatState) -> dict:
     reply = response_service.build_clarification_reply(state.get("clarificationQuestions", []))
     return {
@@ -125,6 +159,7 @@ async def generate_clarification_response(state: KolChatState) -> dict:
     }
 
 
+@timed_node("retrieve_kol_candidates")
 async def retrieve_kol_candidates(state: KolChatState) -> dict:
     merged_criteria = state.get("mergedCriteria", KolSearchCriteria())
     try:
@@ -153,6 +188,7 @@ async def retrieve_kol_candidates(state: KolChatState) -> dict:
         }
 
 
+@timed_node("rank_kols")
 async def rank_kols(state: KolChatState) -> dict:
     merged_criteria = state.get("mergedCriteria", KolSearchCriteria())
     recommendations = ranking_service.rank_candidates(
@@ -166,6 +202,7 @@ async def rank_kols(state: KolChatState) -> dict:
     }
 
 
+@timed_node("generate_final_response")
 async def generate_final_response(state: KolChatState) -> dict:
     merged_criteria = state.get("mergedCriteria", KolSearchCriteria())
     reply = response_service.build_recommendation_reply(
@@ -178,6 +215,7 @@ async def generate_final_response(state: KolChatState) -> dict:
     }
 
 
+@timed_node("save_conversation")
 async def save_conversation(state: KolChatState) -> dict:
     merged_criteria = state.get("mergedCriteria", KolSearchCriteria())
     trace = _trace(state, "save_conversation")

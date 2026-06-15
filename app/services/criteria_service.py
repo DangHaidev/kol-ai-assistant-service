@@ -75,10 +75,10 @@ class CriteriaService:
         questions: list[str] = []
         if not criteria.category and not criteria.campaignGoal:
             questions.append(
-                "Ban muon tim KOL cho nganh hang nao? Vi du: thoi trang, my pham, an uong, cong nghe hoac du lich."
+                "Bạn muốn tìm KOL cho ngành hàng nào? Ví dụ: thời trang, mỹ phẩm, ăn uống, công nghệ hoặc du lịch."
             )
         if not criteria.platforms:
-            questions.append("Ban muon uu tien nen tang nao: TikTok, Instagram, Facebook hay YouTube?")
+            questions.append("Bạn muốn ưu tiên nền tảng nào: TikTok, Instagram, Facebook hay YouTube?")
         return bool(questions), questions[:2]
 
     def _extract_followers(self, text: str, bound: str) -> int | None:

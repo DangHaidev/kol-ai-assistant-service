@@ -18,12 +18,21 @@ class LlmClient:
 
 
 class OpenAILlmClient(LlmClient):
-    def __init__(self, api_key: str, model: str, max_retries: int, base_url: str | None = None) -> None:
+    def __init__(
+        self,
+        api_key: str,
+        model: str,
+        max_retries: int,
+        timeout_seconds: float,
+        base_url: str | None = None,
+    ) -> None:
         self.model = model
         self.max_retries = max_retries
         self.client = AsyncOpenAI(
             api_key=api_key,
             base_url=base_url,
+            timeout=timeout_seconds,
+            max_retries=0,
         )
 
     async def generate_json(self, prompt: str) -> dict:
@@ -57,7 +66,9 @@ class OpenAILlmClient(LlmClient):
                     temperature=0,
                 )
                 return response.output_text.strip()
-            except (APIConnectionError, APITimeoutError, RateLimitError) as exc:
+            except APITimeoutError:
+                raise
+            except (APIConnectionError, RateLimitError) as exc:
                 last_error = exc
                 if attempt >= self.max_retries:
                     raise
@@ -81,6 +92,7 @@ def build_llm_client() -> LlmClient | None:
             api_key=settings.openai_api_key,
             model=settings.openai_model,
             max_retries=settings.openai_max_retries,
+            timeout_seconds=settings.openai_timeout_seconds,
             base_url=settings.openai_base_url,
         )
     return None

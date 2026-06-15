@@ -14,6 +14,7 @@ class Settings(BaseSettings):
     openai_base_url: str | None = None
     openai_model: str = "gpt-4o-mini"
     openai_max_retries: int = 2
+    openai_timeout_seconds: float = 15
     request_timeout_seconds: int = 10
     backend_request_retries: int = 2
     max_recommendation_candidates: int = 50

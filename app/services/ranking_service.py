@@ -27,6 +27,7 @@ class RankingService:
             scored.append(
                 RecommendationItem(
                     kolId=candidate["kolId"],
+                    slug=candidate.get("slug"),
                     displayName=candidate["displayName"],
                     avatarUrl=candidate.get("avatarUrl"),
                     categories=candidate.get("categories", []),
@@ -152,28 +153,28 @@ class RankingService:
         reasons: list[str] = []
         categories = {str(category).lower() for category in candidate.get("categories", []) if category}
         if criteria.category and criteria.category.lower() in categories:
-            reasons.append(f"thuoc linh vuc {criteria.category}")
+            reasons.append(f"thuộc lĩnh vực {criteria.category}")
         elif criteria.category and any(
             category in RELATED_CATEGORIES.get(criteria.category.lower(), set()) for category in categories
         ):
-            reasons.append(f"co noi dung gan voi linh vuc {criteria.category}")
+            reasons.append(f"có nội dung gắn với lĩnh vực {criteria.category}")
 
         best_platform = self._best_platform(candidate, criteria)
         if best_platform:
             platform_name = str(best_platform.get("platform", "")).lower()
-            reasons.append(f"co {best_platform.get('followers', 0):,} follower tren {platform_name}")
+            reasons.append(f"có {best_platform.get('followers', 0):,} follower trên {platform_name}")
 
         price = candidate.get("priceFrom")
         if criteria.maxBudget and price is not None and price <= criteria.maxBudget:
-            reasons.append("gia nam trong ngan sach")
+            reasons.append("giá nằm trong ngân sách")
 
         rating = candidate.get("averageRating")
         if rating is not None and rating >= 4.5:
             reasons.append(f"rating cao {rating}/5")
 
         if not reasons:
-            return "KOL nay co thong tin tuong doi phu hop voi yeu cau tim kiem."
-        return "Phu hop vi " + ", ".join(reasons) + "."
+            return "KOL này có thông tin tương đối phù hợp với yêu cầu tìm kiếm."
+        return "Phù hợp vì " + ", ".join(reasons) + "."
 
     def _best_platform(self, candidate: dict, criteria: KolSearchCriteria) -> dict | None:
         platforms = candidate.get("platforms", [])

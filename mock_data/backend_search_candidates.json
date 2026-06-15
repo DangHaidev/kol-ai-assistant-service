@@ -246,6 +246,523 @@
       "averageRating": 4.5,
       "completedBookingCount": 11,
       "bookingAcceptanceRate": 0.82
+    },
+    {
+      "kolId": 9,
+      "slug": "linh-dan-family",
+      "displayName": "Linh Dan Family",
+      "avatarUrl": "https://example.com/avatars/linh-dan-family.jpg",
+      "bio": "Family and lifestyle creator focused on home routines, parenting products, and daily recommendation content.",
+      "location": "Ha Noi",
+      "gender": "female",
+      "categories": ["lifestyle", "beauty"],
+      "platforms": [
+        {
+          "platform": "facebook",
+          "profileUrl": "https://facebook.com/linh.dan.family",
+          "followers": 210000,
+          "engagementRate": 0.029,
+          "averageViews": 24000
+        },
+        {
+          "platform": "tiktok",
+          "profileUrl": "https://tiktok.com/@linh_dan_family",
+          "followers": 125000,
+          "engagementRate": 0.041,
+          "averageViews": 43000
+        }
+      ],
+      "priceFrom": 6000000,
+      "averageRating": 4.6,
+      "completedBookingCount": 16,
+      "bookingAcceptanceRate": 0.86
+    },
+    {
+      "kolId": 10,
+      "slug": "huy-coffee-saigon",
+      "displayName": "Huy Coffee Saigon",
+      "avatarUrl": "https://example.com/avatars/huy-coffee-saigon.jpg",
+      "bio": "Cafe reviewer and food creator covering new drinks, quick bites, and weekend places in Ho Chi Minh City.",
+      "location": "Ho Chi Minh",
+      "gender": "male",
+      "categories": ["food", "lifestyle"],
+      "platforms": [
+        {
+          "platform": "tiktok",
+          "profileUrl": "https://tiktok.com/@huy_coffee_saigon",
+          "followers": 185000,
+          "engagementRate": 0.047,
+          "averageViews": 52000
+        },
+        {
+          "platform": "instagram",
+          "profileUrl": "https://instagram.com/huy_coffee_saigon",
+          "followers": 80000,
+          "engagementRate": 0.033,
+          "averageViews": 19000
+        }
+      ],
+      "priceFrom": 5000000,
+      "averageRating": 4.7,
+      "completedBookingCount": 22,
+      "bookingAcceptanceRate": 0.88
+    },
+    {
+      "kolId": 11,
+      "slug": "an-nhi-beauty-clinic",
+      "displayName": "An Nhi Beauty Clinic",
+      "avatarUrl": "https://example.com/avatars/an-nhi-beauty-clinic.jpg",
+      "bio": "Beauty educator creating skincare explainers, makeup tutorials, and clinic-friendly product reviews.",
+      "location": "Da Nang",
+      "gender": "female",
+      "categories": ["beauty", "lifestyle"],
+      "platforms": [
+        {
+          "platform": "instagram",
+          "profileUrl": "https://instagram.com/an_nhi_beauty",
+          "followers": 95000,
+          "engagementRate": 0.036,
+          "averageViews": 17000
+        },
+        {
+          "platform": "tiktok",
+          "profileUrl": "https://tiktok.com/@an_nhi_beauty",
+          "followers": 155000,
+          "engagementRate": 0.053,
+          "averageViews": 61000
+        }
+      ],
+      "priceFrom": 7500000,
+      "averageRating": 4.8,
+      "completedBookingCount": 18,
+      "bookingAcceptanceRate": 0.9
+    },
+    {
+      "kolId": 12,
+      "slug": "minh-quan-gaming",
+      "displayName": "Minh Quan Gaming",
+      "avatarUrl": "https://example.com/avatars/minh-quan-gaming.jpg",
+      "bio": "Gaming and entertainment creator with livestream highlights, hardware reviews, and challenge content.",
+      "location": "Ho Chi Minh",
+      "gender": "male",
+      "categories": ["entertainment", "tech"],
+      "platforms": [
+        {
+          "platform": "youtube",
+          "profileUrl": "https://youtube.com/@minhquangaming",
+          "followers": 620000,
+          "engagementRate": 0.049,
+          "averageViews": 118000
+        },
+        {
+          "platform": "tiktok",
+          "profileUrl": "https://tiktok.com/@minh_quan_gaming",
+          "followers": 300000,
+          "engagementRate": 0.058,
+          "averageViews": 135000
+        }
+      ],
+      "priceFrom": 20000000,
+      "averageRating": 4.8,
+      "completedBookingCount": 31,
+      "bookingAcceptanceRate": 0.87
+    },
+    {
+      "kolId": 13,
+      "slug": "thao-nhi-minimal-style",
+      "displayName": "Thao Nhi Minimal Style",
+      "avatarUrl": "https://example.com/avatars/thao-nhi-minimal-style.jpg",
+      "bio": "Minimal fashion creator for workwear, capsule wardrobe, and affordable outfit styling.",
+      "location": "Ho Chi Minh",
+      "gender": "female",
+      "categories": ["fashion", "lifestyle"],
+      "platforms": [
+        {
+          "platform": "instagram",
+          "profileUrl": "https://instagram.com/thao_nhi_style",
+          "followers": 260000,
+          "engagementRate": 0.039,
+          "averageViews": 38000
+        },
+        {
+          "platform": "tiktok",
+          "profileUrl": "https://tiktok.com/@thao_nhi_style",
+          "followers": 210000,
+          "engagementRate": 0.048,
+          "averageViews": 72000
+        }
+      ],
+      "priceFrom": 9500000,
+      "averageRating": 4.9,
+      "completedBookingCount": 27,
+      "bookingAcceptanceRate": 0.92
+    },
+    {
+      "kolId": 14,
+      "slug": "phuong-anh-mom-life",
+      "displayName": "Phuong Anh Mom Life",
+      "avatarUrl": "https://example.com/avatars/phuong-anh-mom-life.jpg",
+      "bio": "Lifestyle creator sharing mother-care routines, beauty products, and household recommendations.",
+      "location": "Ha Noi",
+      "gender": "female",
+      "categories": ["lifestyle", "beauty"],
+      "platforms": [
+        {
+          "platform": "facebook",
+          "profileUrl": "https://facebook.com/phuong.anh.momlife",
+          "followers": 180000,
+          "engagementRate": 0.026,
+          "averageViews": 20000
+        },
+        {
+          "platform": "tiktok",
+          "profileUrl": "https://tiktok.com/@phuong_anh_momlife",
+          "followers": 105000,
+          "engagementRate": 0.043,
+          "averageViews": 39000
+        }
+      ],
+      "priceFrom": 6500000,
+      "averageRating": 4.6,
+      "completedBookingCount": 13,
+      "bookingAcceptanceRate": 0.84
+    },
+    {
+      "kolId": 15,
+      "slug": "gia-bao-sneaker-hub",
+      "displayName": "Gia Bao Sneaker Hub",
+      "avatarUrl": "https://example.com/avatars/gia-bao-sneaker-hub.jpg",
+      "bio": "Streetwear and sneaker creator reviewing drops, styling outfits, and youth culture trends.",
+      "location": "Ho Chi Minh",
+      "gender": "male",
+      "categories": ["fashion", "lifestyle"],
+      "platforms": [
+        {
+          "platform": "tiktok",
+          "profileUrl": "https://tiktok.com/@gia_bao_sneaker",
+          "followers": 275000,
+          "engagementRate": 0.051,
+          "averageViews": 84000
+        },
+        {
+          "platform": "instagram",
+          "profileUrl": "https://instagram.com/gia_bao_sneaker",
+          "followers": 145000,
+          "engagementRate": 0.034,
+          "averageViews": 25000
+        }
+      ],
+      "priceFrom": 11000000,
+      "averageRating": 4.7,
+      "completedBookingCount": 20,
+      "bookingAcceptanceRate": 0.85
+    },
+    {
+      "kolId": 16,
+      "slug": "nhat-minh-travel-food",
+      "displayName": "Nhat Minh Travel Food",
+      "avatarUrl": "https://example.com/avatars/nhat-minh-travel-food.jpg",
+      "bio": "Travel and food creator producing itinerary videos, hotel stays, and local food maps.",
+      "location": "Da Nang",
+      "gender": "male",
+      "categories": ["travel", "food"],
+      "platforms": [
+        {
+          "platform": "youtube",
+          "profileUrl": "https://youtube.com/@nhatminhtravelfood",
+          "followers": 240000,
+          "engagementRate": 0.046,
+          "averageViews": 62000
+        },
+        {
+          "platform": "tiktok",
+          "profileUrl": "https://tiktok.com/@nhat_minh_travel_food",
+          "followers": 170000,
+          "engagementRate": 0.052,
+          "averageViews": 69000
+        }
+      ],
+      "priceFrom": 8500000,
+      "averageRating": 4.8,
+      "completedBookingCount": 23,
+      "bookingAcceptanceRate": 0.89
+    },
+    {
+      "kolId": 17,
+      "slug": "vy-vegan-kitchen",
+      "displayName": "Vy Vegan Kitchen",
+      "avatarUrl": "https://example.com/avatars/vy-vegan-kitchen.jpg",
+      "bio": "Healthy food creator sharing plant-based recipes, meal prep, and fitness-friendly snacks.",
+      "location": "Ho Chi Minh",
+      "gender": "female",
+      "categories": ["food", "fitness", "lifestyle"],
+      "platforms": [
+        {
+          "platform": "tiktok",
+          "profileUrl": "https://tiktok.com/@vy_vegan_kitchen",
+          "followers": 135000,
+          "engagementRate": 0.056,
+          "averageViews": 58000
+        },
+        {
+          "platform": "instagram",
+          "profileUrl": "https://instagram.com/vy_vegan_kitchen",
+          "followers": 75000,
+          "engagementRate": 0.037,
+          "averageViews": 16000
+        }
+      ],
+      "priceFrom": 4500000,
+      "averageRating": 4.7,
+      "completedBookingCount": 15,
+      "bookingAcceptanceRate": 0.9
+    },
+    {
+      "kolId": 18,
+      "slug": "thanh-long-tech-deals",
+      "displayName": "Thanh Long Tech Deals",
+      "avatarUrl": "https://example.com/avatars/thanh-long-tech-deals.jpg",
+      "bio": "Tech creator focused on practical gadget comparisons, phone deals, and buyer guides.",
+      "location": "Hai Phong",
+      "gender": "male",
+      "categories": ["tech"],
+      "platforms": [
+        {
+          "platform": "youtube",
+          "profileUrl": "https://youtube.com/@thanhlongtechdeals",
+          "followers": 190000,
+          "engagementRate": 0.044,
+          "averageViews": 43000
+        },
+        {
+          "platform": "facebook",
+          "profileUrl": "https://facebook.com/thanh.long.tech.deals",
+          "followers": 120000,
+          "engagementRate": 0.025,
+          "averageViews": 15000
+        },
+        {
+          "platform": "tiktok",
+          "profileUrl": "https://tiktok.com/@thanh_long_tech",
+          "followers": 95000,
+          "engagementRate": 0.039,
+          "averageViews": 31000
+        }
+      ],
+      "priceFrom": 8000000,
+      "averageRating": 4.5,
+      "completedBookingCount": 12,
+      "bookingAcceptanceRate": 0.82
+    },
+    {
+      "kolId": 19,
+      "slug": "ruby-makeup-live",
+      "displayName": "Ruby Makeup Live",
+      "avatarUrl": "https://example.com/avatars/ruby-makeup-live.jpg",
+      "bio": "Makeup creator with livestream selling experience, product demos, and trend-led beauty content.",
+      "location": "Ho Chi Minh",
+      "gender": "female",
+      "categories": ["beauty", "fashion"],
+      "platforms": [
+        {
+          "platform": "tiktok",
+          "profileUrl": "https://tiktok.com/@ruby_makeup_live",
+          "followers": 410000,
+          "engagementRate": 0.059,
+          "averageViews": 125000
+        },
+        {
+          "platform": "facebook",
+          "profileUrl": "https://facebook.com/ruby.makeup.live",
+          "followers": 220000,
+          "engagementRate": 0.031,
+          "averageViews": 37000
+        }
+      ],
+      "priceFrom": 13000000,
+      "averageRating": 4.9,
+      "completedBookingCount": 36,
+      "bookingAcceptanceRate": 0.91
+    },
+    {
+      "kolId": 20,
+      "slug": "hoang-nam-street-fit",
+      "displayName": "Hoang Nam Street Fit",
+      "avatarUrl": "https://example.com/avatars/hoang-nam-street-fit.jpg",
+      "bio": "Fitness and streetwear creator for gym routines, activewear styling, and supplement campaigns.",
+      "location": "Ho Chi Minh",
+      "gender": "male",
+      "categories": ["fitness", "fashion", "lifestyle"],
+      "platforms": [
+        {
+          "platform": "tiktok",
+          "profileUrl": "https://tiktok.com/@hoang_nam_fit",
+          "followers": 160000,
+          "engagementRate": 0.049,
+          "averageViews": 57000
+        },
+        {
+          "platform": "instagram",
+          "profileUrl": "https://instagram.com/hoang_nam_fit",
+          "followers": 88000,
+          "engagementRate": 0.032,
+          "averageViews": 17000
+        }
+      ],
+      "priceFrom": 7000000,
+      "averageRating": 4.6,
+      "completedBookingCount": 18,
+      "bookingAcceptanceRate": 0.86
+    },
+    {
+      "kolId": 21,
+      "slug": "uyen-nhi-campus-life",
+      "displayName": "Uyen Nhi Campus Life",
+      "avatarUrl": "https://example.com/avatars/uyen-nhi-campus-life.jpg",
+      "bio": "Campus lifestyle creator covering student fashion, snacks, budget finds, and daily routines.",
+      "location": "Can Tho",
+      "gender": "female",
+      "categories": ["lifestyle", "fashion", "food"],
+      "platforms": [
+        {
+          "platform": "tiktok",
+          "profileUrl": "https://tiktok.com/@uyen_nhi_campus",
+          "followers": 85000,
+          "engagementRate": 0.062,
+          "averageViews": 42000
+        },
+        {
+          "platform": "instagram",
+          "profileUrl": "https://instagram.com/uyen_nhi_campus",
+          "followers": 60000,
+          "engagementRate": 0.04,
+          "averageViews": 12000
+        }
+      ],
+      "priceFrom": 3500000,
+      "averageRating": 4.4,
+      "completedBookingCount": 7,
+      "bookingAcceptanceRate": 0.8
+    },
+    {
+      "kolId": 22,
+      "slug": "khanh-linh-luxury-travel",
+      "displayName": "Khanh Linh Luxury Travel",
+      "avatarUrl": "https://example.com/avatars/khanh-linh-luxury-travel.jpg",
+      "bio": "Premium travel creator for resorts, airline services, destination campaigns, and high-end experiences.",
+      "location": "Ha Noi",
+      "gender": "female",
+      "categories": ["travel", "lifestyle"],
+      "platforms": [
+        {
+          "platform": "instagram",
+          "profileUrl": "https://instagram.com/khanh_linh_luxury_travel",
+          "followers": 420000,
+          "engagementRate": 0.037,
+          "averageViews": 56000
+        },
+        {
+          "platform": "youtube",
+          "profileUrl": "https://youtube.com/@khanhlinhluxurytravel",
+          "followers": 180000,
+          "engagementRate": 0.043,
+          "averageViews": 72000
+        }
+      ],
+      "priceFrom": 22000000,
+      "averageRating": 4.9,
+      "completedBookingCount": 29,
+      "bookingAcceptanceRate": 0.9
+    },
+    {
+      "kolId": 23,
+      "slug": "saigon-eats-duo",
+      "displayName": "Saigon Eats Duo",
+      "avatarUrl": "https://example.com/avatars/saigon-eats-duo.jpg",
+      "bio": "Food entertainment duo producing street-food challenges, restaurant launches, and group review videos.",
+      "location": "Ho Chi Minh",
+      "gender": null,
+      "categories": ["food", "entertainment"],
+      "platforms": [
+        {
+          "platform": "facebook",
+          "profileUrl": "https://facebook.com/saigon.eats.duo",
+          "followers": 260000,
+          "engagementRate": 0.028,
+          "averageViews": 33000
+        },
+        {
+          "platform": "tiktok",
+          "profileUrl": "https://tiktok.com/@saigon_eats_duo",
+          "followers": 360000,
+          "engagementRate": 0.055,
+          "averageViews": 110000
+        }
+      ],
+      "priceFrom": 10000000,
+      "averageRating": 4.8,
+      "completedBookingCount": 34,
+      "bookingAcceptanceRate": 0.89
+    },
+    {
+      "kolId": 24,
+      "slug": "phuoc-camera-lab",
+      "displayName": "Phuoc Camera Lab",
+      "avatarUrl": "https://example.com/avatars/phuoc-camera-lab.jpg",
+      "bio": "Camera and creator-tech reviewer for smartphones, lenses, accessories, and production workflows.",
+      "location": "Ho Chi Minh",
+      "gender": "male",
+      "categories": ["tech", "lifestyle"],
+      "platforms": [
+        {
+          "platform": "tiktok",
+          "profileUrl": "https://tiktok.com/@phuoc_camera_lab",
+          "followers": 230000,
+          "engagementRate": 0.046,
+          "averageViews": 65000
+        },
+        {
+          "platform": "youtube",
+          "profileUrl": "https://youtube.com/@phuoccameralab",
+          "followers": 310000,
+          "engagementRate": 0.052,
+          "averageViews": 90000
+        }
+      ],
+      "priceFrom": 14000000,
+      "averageRating": 4.8,
+      "completedBookingCount": 25,
+      "bookingAcceptanceRate": 0.91
+    },
+    {
+      "kolId": 25,
+      "slug": "lan-anh-skincare-nurse",
+      "displayName": "Lan Anh Skincare Nurse",
+      "avatarUrl": "https://example.com/avatars/lan-anh-skincare-nurse.jpg",
+      "bio": "Beauty and wellness creator explaining skincare routines, sensitive skin tips, and product usage.",
+      "location": "Hai Phong",
+      "gender": "female",
+      "categories": ["beauty", "fitness", "lifestyle"],
+      "platforms": [
+        {
+          "platform": "tiktok",
+          "profileUrl": "https://tiktok.com/@lan_anh_skincare",
+          "followers": 145000,
+          "engagementRate": 0.054,
+          "averageViews": 58000
+        },
+        {
+          "platform": "facebook",
+          "profileUrl": "https://facebook.com/lan.anh.skincare.nurse",
+          "followers": 130000,
+          "engagementRate": 0.03,
+          "averageViews": 21000
+        }
+      ],
+      "priceFrom": 5800000,
+      "averageRating": 4.7,
+      "completedBookingCount": 17,
+      "bookingAcceptanceRate": 0.88
     }
   ]
 }
