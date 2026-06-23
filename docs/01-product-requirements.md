@@ -265,23 +265,3 @@ schema
 prompt
 graph
 ```
-
-## 7. MVP Scope
-
-Nên làm trước:
-
-- Chat API.
-- Lưu hội thoại.
-- Extract criteria.
-- Merge criteria theo conversation.
-- Gọi backend lấy KOL.
-- Rank KOL.
-- Trả về top 5.
-
-Chưa cần làm ngay:
-
-- Vector search.
-- Multi-agent phức tạp.
-- Fine-tuning model riêng.
-- Payment/booking bằng AI.
-- Tự động gửi booking.

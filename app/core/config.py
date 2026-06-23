@@ -15,6 +15,10 @@ class Settings(BaseSettings):
     openai_model: str = "gpt-4o-mini"
     openai_max_retries: int = 2
     openai_timeout_seconds: float = 15
+    gemini_api_key: str | None = None
+    gemini_model: str = "gemini-3.1-flash-lite"
+    gemini_max_retries: int = 2
+    gemini_timeout_seconds: float = 15
     request_timeout_seconds: int = 10
     backend_request_retries: int = 2
     max_recommendation_candidates: int = 50

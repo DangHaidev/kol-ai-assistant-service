@@ -115,6 +115,29 @@ pip install -r requirements.txt
 uvicorn app.main:app --reload --port 8001
 ```
 
+### Chọn LLM provider
+
+Mặc định service dùng OpenAI-compatible API. Để chạy với Gemini 3.1 Flash-Lite, cấu hình `.env` như sau:
+
+```env
+LLM_PROVIDER=gemini
+GEMINI_API_KEY=your_gemini_api_key
+GEMINI_MODEL=gemini-3.1-flash-lite
+GEMINI_TIMEOUT_SECONDS=15
+```
+
+Gemini gọi native Generative Language API và trả JSON có cấu trúc cho luồng phân loại intent/trích xuất tiêu chí.
+
+### Làm mới dữ liệu KOL mock
+
+Script dưới đây tải KOL public từ backend, lấy detail của từng KOL và ghi vào `mock_data/backend_search_candidates.json`:
+
+```powershell
+.\.venv\Scripts\python scripts\refresh_mock_candidates.py
+```
+
+Script dùng `sort=follower_desc` vì endpoint public có thể trả ID trùng khi dùng thứ tự `featured` mặc định.
+
 Trên Windows PowerShell:
 
 ```powershell
